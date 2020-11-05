@@ -5,6 +5,7 @@
   2020-08-26 C. Collins Created
   2020-09-17 C. Collins Added hysteresis logic
   2020-10-09 C. Collins added command via MQTT logic
+  2020-11-05 C. Collins moved to github
 
   Todo Log:
 
