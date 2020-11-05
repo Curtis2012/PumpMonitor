@@ -1,0 +1,56 @@
+{
+	"site": {
+		"sitename": "SUPERAGUAS/BOOSTPUMP",
+		"timezone": -5,
+		"dst": false,
+		"network": false,
+		"pssid": "TALLER",
+		"ppwd": "WiFi-89951645",
+		"usealt": true,
+		"altssid": "Bodega",
+		"altpwd": "Sail2012",
+		"mqtt_topic": "csc/homepa/pumpmon_tst",
+		"mqtt_server": "cscrpi",
+		"mqtt_port": 1883,
+		"debug": true,
+		"sensorcheckdelay": 1000,
+		"senddatadelay": 10000
+	},
+	"sensordefs": [
+		{
+			"pin": 17,
+			"minP": 0,
+			"maxP": 60,
+			"offset": 33,
+			"numsetpoints": 2,
+			"setpoints": [
+				{
+					"setp": 15.0,
+					"setptype": 1,
+					"hystcomp": true,
+					"hystsamples": 10,
+					"hystsampledelay": 1000,
+					"hystcount": 5,
+					"relay": 0
+				},
+				{
+					"setp": 25.0,
+					"setptype": 0,
+					"hystcomp": true,
+					"hystsamples": 5,
+					"hystsampledelay": 1000,
+					"hystcount": 2,
+					"relay": 0
+				}
+			]
+		}
+	],
+	"relaydefs": [
+		{
+			"pin": 5
+		},
+		{
+			"pin": 4
+		}
+	]
+}

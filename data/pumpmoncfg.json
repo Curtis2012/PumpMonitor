@@ -1,0 +1,152 @@
+{
+	"site": {
+		"sitename": "SUPERAGUAS",
+		"timezone": -5,
+		"dst": false,
+		"network": true,
+		"pssid": "pumpmonrpi",
+		"ppwd": "sail2012",
+		"usealt": false,
+		"altssid": "Bodega",
+		"altpwd": "sail2012",
+		"mqtt_topic_data": "superaguas/tankmon_data",
+		"mqtt_topic_ctrl": "superaguas/tankmon_ctrl",		
+		"mqtt_server": "pumpmonrpi",
+		"mqtt_port": 1883,
+		"debug": true,
+		"numSensors": 4,
+		"startingSensorNum": 0,
+		"numRelays":4, 
+		"startingRelayNum": 0,
+		"sensorcheckdelay": 1000,
+		"senddatadelay": 10000
+	},
+	"sensordefs": [
+		{
+			"minP": 0,
+			"maxP": 60,
+			"offset": 2650,
+			"numsetpoints": 2,
+			"setpoints": [
+				{
+					"setp": 15.0,
+					"setptype": 1,
+					"hystcomp": false,
+					"hystsamples": 10,
+					"hystsampledelay": 1000,
+					"hystcount": 5,
+					"relay": 0
+				},
+				{
+					"setp": 25.0,
+					"setptype": 0,
+					"hystcomp": false,
+					"hystsamples": 5,
+					"hystsampledelay": 1000,
+					"hystcount": 2,
+					"relay": 0
+				}]
+		},
+			{
+			"minP": 0,
+			"maxP": 60,
+			"offset": 2650,
+			"numsetpoints": 2,
+			"setpoints":[
+				{
+					"setp": 15.0,
+					"setptype": 1,
+					"hystcomp": false,
+					"hystsamples": 10,
+					"hystsampledelay": 1000,
+					"hystcount": 5,
+					"relay": 1
+				},
+				{
+					"setp": 25.0,
+					"setptype": 0,
+					"hystcomp": false,
+					"hystsamples": 5,
+					"hystsampledelay": 1000,
+					"hystcount": 2,
+					"relay": 1
+				}]
+			},
+			{
+			"minP": 0,
+			"maxP": 60,
+			"offset": 2650,
+			"numsetpoints": 2,
+			"setpoints":[			
+				{
+					"setp": 15.0,
+					"setptype": 1,
+					"hystcomp": false,
+					"hystsamples": 10,
+					"hystsampledelay": 1000,
+					"hystcount": 5,
+					"relay": 2
+				},
+				{
+					"setp": 25.0,
+					"setptype": 0,
+					"hystcomp": false,
+					"hystsamples": 5,
+					"hystsampledelay": 1000,
+					"hystcount": 2,
+					"relay": 2
+				}]
+			},
+			{
+			"minP": 0,
+			"maxP": 60,
+			"offset": 2650,
+			"numsetpoints": 2,
+			"setpoints":[
+				{
+					"setp": 15.0,
+					"setptype": 1,
+					"hystcomp": false,
+					"hystsamples": 10,
+					"hystsampledelay": 1000,
+					"hystcount": 5,
+					"relay": 3
+				},
+				{
+					"setp": 25.0,
+					"setptype": 0,
+					"hystcomp": false,
+					"hystsamples": 5,
+					"hystsampledelay": 1000,
+					"hystcount": 2,
+					"relay": 3
+				}
+			]
+		}
+	],
+	"relaydefs": [
+		{
+			"pin": 0,
+			"maxOn": 60,
+			"maxOnDelay": 60
+		},
+				
+		{
+			"pin": 13,
+			"maxOn": 60,
+			"maxOnDelay": 60
+		},
+		
+		{
+			"pin": 14,
+			"maxOn": 60,
+			"maxOnDelay": 60
+		},
+		
+		{
+			"pin": 12,
+			"maxOn": 60,
+			"maxOnDelay": 60
+		}	
+	]
+}
