@@ -1,0 +1,59 @@
+{
+  "configurations": [
+    {
+      "name": "Visual Micro",
+      "intelliSenseMode": "windows-msvc-x86",
+      "includePath": [
+        "${projectRoot}..\\PumpMonitor",
+        "${projectRoot}..\\..\\libraries\\cscNetServices",
+        "${projectRoot}..\\..\\..\\..\\AppData\\Local\\arduino15\\packages\\esp8266\\hardware\\esp8266\\2.7.4\\libraries\\ESP8266WiFi\\src",
+        "${projectRoot}..\\..\\..\\..\\AppData\\Local\\arduino15\\packages\\esp8266\\hardware\\esp8266\\2.7.4\\libraries\\ESP8266mDNS\\src",
+        "${projectRoot}..\\..\\libraries\\PubSubClient\\src",
+        "${projectRoot}..\\..\\libraries\\ArduinoJson\\src",
+        "${projectRoot}..\\..\\libraries\\Time",
+        "${projectRoot}..\\..\\libraries\\NTPClient",
+        "${projectRoot}..\\..\\..\\..\\AppData\\Local\\arduino15\\packages\\esp8266\\hardware\\esp8266\\2.7.4\\libraries\\ArduinoOTA",
+        "${projectRoot}..\\..\\libraries\\PumpMonLib",
+        "${projectRoot}..\\..\\libraries\\arduino-timer\\src",
+        "${projectRoot}..\\..\\libraries\\Adafruit_ADS1X15",
+        "${projectRoot}..\\..\\..\\..\\AppData\\Local\\arduino15\\packages\\esp8266\\hardware\\esp8266\\2.7.4\\libraries\\Wire",
+        "${projectRoot}..\\..\\..\\..\\AppData\\Local\\arduino15\\packages\\esp8266\\hardware\\esp8266\\2.7.4\\cores\\esp8266",
+        "${projectRoot}..\\..\\..\\..\\AppData\\Local\\arduino15\\packages\\esp8266\\hardware\\esp8266\\2.7.4\\cores\\esp8266\\avr",
+        "${projectRoot}..\\..\\..\\..\\AppData\\Local\\arduino15\\packages\\esp8266\\hardware\\esp8266\\2.7.4\\cores\\esp8266\\libb64",
+        "${projectRoot}..\\..\\..\\..\\AppData\\Local\\arduino15\\packages\\esp8266\\hardware\\esp8266\\2.7.4\\cores\\esp8266\\spiffs",
+        "${projectRoot}..\\..\\..\\..\\AppData\\Local\\arduino15\\packages\\esp8266\\hardware\\esp8266\\2.7.4\\cores\\esp8266\\umm_malloc",
+        "${projectRoot}..\\..\\..\\..\\AppData\\Local\\arduino15\\packages\\esp8266\\hardware\\esp8266\\2.7.4\\variants\\nodemcu",
+        "${projectRoot}..\\..\\..\\..\\AppData\\Local\\arduino15\\packages\\esp8266\\hardware\\esp8266\\2.7.4\\tools\\sdk\\include",
+        "${projectRoot}..\\..\\..\\..\\AppData\\Local\\arduino15\\packages\\esp8266\\hardware\\esp8266\\2.7.4\\tools\\sdk\\lwip2\\include",
+        "${projectRoot}..\\..\\..\\..\\AppData\\Local\\arduino15\\packages\\esp8266\\hardware\\esp8266\\2.7.4\\tools\\sdk\\libc\\xtensa-lx106-elf\\include",
+        "${projectRoot}..\\..\\..\\..\\DOCUME~1\\Arduino\\SKETCH~1\\PUMPMO~1",
+        "${projectRoot}..\\..\\..\\..\\AppData\\Local\\arduino15\\packages\\esp8266\\tools\\xtensa-lx106-elf-gcc\\2.5.0-4-b40a506\\xtensa-lx106-elf\\include\\c++\\4.8.2",
+        "${projectRoot}..\\..\\..\\..\\AppData\\Local\\arduino15\\packages\\esp8266\\tools\\xtensa-lx106-elf-gcc\\2.5.0-4-b40a506\\xtensa-lx106-elf\\include\\c++\\4.8.2\\xtensa-lx106-elf",
+        "${projectRoot}..\\..\\..\\..\\AppData\\Local\\arduino15\\packages\\esp8266\\tools\\xtensa-lx106-elf-gcc\\2.5.0-4-b40a506\\xtensa-lx106-elf\\include",
+        "${projectRoot}..\\..\\..\\..\\AppData\\Local\\arduino15\\packages\\esp8266\\tools\\xtensa-lx106-elf-gcc\\2.5.0-4-b40a506\\lib\\gcc\\xtensa-lx106-elf\\4.8.2\\include",
+        "${projectRoot}..\\..\\..\\..\\AppData\\Local\\arduino15\\packages\\esp8266\\hardware\\esp8266\\2.7.4\\tools\\sdk\\include"
+      ],
+      "defines": [
+        "__ESP8266_esp8266__",
+        "__ESP8266_ESP8266__",
+        "__ets__",
+        "ICACHE_FLASH",
+        "NONOSDK22x_190703=1",
+        "F_CPU=80000000L",
+        "LWIP_OPEN_SRC",
+        "TCP_MSS=536",
+        "LWIP_FEATURES=1",
+        "LWIP_IPV6=0",
+        "DEBUG_ESP_PORT=Serial",
+        "ARDUINO=108013",
+        "ARDUINO_ESP8266_NODEMCU",
+        "ARDUINO_ARCH_ESP8266",
+        "LED_BUILTIN=16",
+        "FLASHMODE_DIO",
+        "ESP8266",
+        "__cplusplus=201103L",
+        "_VMICRO_INTELLISENSE"
+      ]
+    }
+  ]
+}
