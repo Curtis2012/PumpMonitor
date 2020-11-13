@@ -4,7 +4,7 @@
 		"timezone": -5,
 		"dst": false,
 		"network": true,
-		"pssid": "cscrpi",
+		"pssid": "COWIFI151420636/0-EXT",
 		"ppwd": "sail2012",
 		"usealt": false,
 		"altssid": "Bodega",
@@ -13,13 +13,14 @@
 		"mqtt_topic_ctrl": "csc/homepa/tankmon_ctrl",		
 		"mqtt_server": "cscrpi",
 		"mqtt_port": 1883,
-		"debug": true,
+		"debug": false,
 		"numSensors": 4,
 		"startingSensorNum": 0,
 		"numRelays":4, 
 		"startingRelayNum": 0,
 		"sensorcheckdelay": 1000,
-		"senddatadelay": 10000
+		"senddatadelay": 10000,
+		"otapwd":"sail2012"
 	},
 	"sensordefs": [
 		{
