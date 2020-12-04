@@ -13,7 +13,7 @@
 		"mqtt_topic_ctrl": "csc/homepa/tankmon_ctrl",		
 		"mqtt_server": "cscrpi",
 		"mqtt_port": 1883,
-		"debug": false,
+		"debug": true,
 		"numSensors": 4,
 		"startingSensorNum": 0,
 		"numRelays":4, 
