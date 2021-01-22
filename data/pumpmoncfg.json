@@ -24,9 +24,10 @@
 	},
 	"sensordefs": [
 		{
+			"pin": 36,
 			"minP": 0,
 			"maxP": 60,
-			"offset": 2650,
+			"offset": 6.30,
 			"numsetpoints": 2,
 			"setpoints": [
 				{
@@ -49,9 +50,10 @@
 				}]
 		},
 			{
+			"pin": 39,
 			"minP": 0,
 			"maxP": 60,
-			"offset": 2650,
+			"offset": 6.31,
 			"numsetpoints": 2,
 			"setpoints":[
 				{
@@ -74,9 +76,10 @@
 				}]
 			},
 			{
+			"pin": 34,
 			"minP": 0,
 			"maxP": 60,
-			"offset": 2650,
+			"offset": 6.33,
 			"numsetpoints": 2,
 			"setpoints":[			
 				{
@@ -99,9 +102,10 @@
 				}]
 			},
 			{
+			"pin": 35,
 			"minP": 0,
 			"maxP": 60,
-			"offset": 2650,
+			"offset": 6.33,
 			"numsetpoints": 2,
 			"setpoints":[
 				{
@@ -127,25 +131,29 @@
 	],
 	"relaydefs": [
 		{
-			"pin": 0,
+			"pin": 13,
+			"hitrigger": false,
 			"maxOn": 60,
 			"maxOnDelay": 60
 		},
 				
 		{
-			"pin": 13,
-			"maxOn": 60,
-			"maxOnDelay": 60
-		},
-		
-		{
 			"pin": 14,
+			"hitrigger": true,
 			"maxOn": 60,
 			"maxOnDelay": 60
 		},
 		
 		{
-			"pin": 12,
+			"pin": 27,
+			"hitrigger": true,
+			"maxOn": 60,
+			"maxOnDelay": 60
+		},
+		
+		{
+			"pin": 26,
+			"hitrigger": true,
 			"maxOn": 60,
 			"maxOnDelay": 60
 		}	

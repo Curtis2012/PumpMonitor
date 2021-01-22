@@ -503,16 +503,19 @@ void initRelays()
     pinMode(relays[i].pin, OUTPUT);
     openRelays(i);
   }
+  Serial.println("InitRelays done");
 }
 
 void initSensors()
 {
+    Serial.println("InitSenors called");
   for (int i = 0; i < numSensors; i++)
   {
     //pinMode(pressureSensors[i].pin, INPUT);
     msgn = sprintf(msgbuff, "\nSensor % i pin % i mode set to INPUT", i, pressureSensors[i].pin);
     Serial.print(msgbuff);
   }
+  Serial.println("InitSenors done");
 }
 
 void setup()

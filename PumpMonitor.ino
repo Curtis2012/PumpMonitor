@@ -6,6 +6,7 @@
   2020-09-17 C. Collins Added hysteresis logic
   2020-10-09 C. Collins added command via MQTT logic
   2020-11-05 C. Collins moved to github
+  2020-12-16 C. Collins ported to ESP32 to take advantage of ESP32's increased pins.
 
   Todo Log:
 
@@ -25,15 +26,15 @@
 
 #include <cscNetServices.h>
 #include <Pumpmon.h>
-#include <Adafruit_ADS1015.h>
+//#include <Adafruit_ADS1015.h>
 
-#define PADJUST 4.2
 #define ALLPUMPS 255
 #define ALLRELAYS 255
+#define LED_BUILTIN 2
 
 auto timer = timer_create_default();
 long unsigned int chipID = 0;
-Adafruit_ADS1115 ads;
+//Adafruit_ADS1115 ads;
 
 void printTimestamp()
 {
@@ -46,7 +47,12 @@ void openRelays(int r)
 	{
 		for (int i = 0; i < numRelays; i++)
 		{
-			digitalWrite(relays[i].pin, LOW);
+			if (relays[i].hiTrigger)
+			{
+				digitalWrite(relays[i].pin, LOW);
+			}
+			else digitalWrite(relays[i].pin, HIGH);
+
 			relays[i].closed = false;
 			msgn = sprintf(msgbuff, "\nRelay % i on pin % i opened", i, relays[i].pin);
 			Serial.print(msgbuff);
@@ -165,14 +171,21 @@ void relayAction(int relay, int action)
 
 float readPressure(unsigned int sensor)  // broke out separately so could be called w/out recursion
 {
-	pressureSensors[sensor].rawV = ads.readADC_SingleEnded(sensor);
-	pressureSensors[sensor].currentP = (((pressureSensors[sensor].rawV - pressureSensors[sensor].offset) * (pressureSensors[sensor].maxP / 65535)) * PADJUST);
+	pressureSensors[sensor].rawV = analogRead(pressureSensors[sensor].pin);
+
+	pressureSensors[sensor].currentP = ((pressureSensors[sensor].rawV) * (pressureSensors[sensor].maxP / 4095)) - pressureSensors[sensor].offset;
+
+	   if (pressureSensors[sensor].currentP < 1) pressureSensors[sensor].currentP = 0;
 
 	if (debug)
 	{
+		msgn = snprintf(msgbuff, MSGBUFFLEN, "readPressure(sensor = %i): ", sensor);
+		outputMsg(msgbuff);
+		msgn = snprintf(msgbuff, MSGBUFFLEN, "pressureSensors[sensor].offset = %f", pressureSensors[sensor].offset);
+		outputMsg(msgbuff);
 		msgn = snprintf(msgbuff, MSGBUFFLEN, "pressureSensors[sensor].rawV = %i", pressureSensors[sensor].rawV);
 		outputMsg(msgbuff);
-		msgn = snprintf(msgbuff, MSGBUFFLEN, "pressureSensors[sensor].currentP = %i", pressureSensors[sensor].currentP);
+		msgn = snprintf(msgbuff, MSGBUFFLEN, "pressureSensors[sensor].currentP = %f", pressureSensors[sensor].currentP);
 		outputMsg(msgbuff);
 	}
 }
@@ -223,7 +236,7 @@ void checkSetPoints(int sensor)
 		if (debug)
 		{
 			Serial.println("\ncheckSetPoints(): ");
-			msgn = sprintf(msgbuff, "\npressureSensors[%i].setPoints[%i].setPType = % i, pressureSensors[sensor].currentP = % f, pressureSensors[sensor].setPoints[i].setP = % f", sensor, i, pressureSensors[sensor].setPoints[i].setPType, pressureSensors[sensor].currentP, pressureSensors[sensor].setPoints[i].setP);
+			msgn = snprintf(msgbuff, MSGBUFFLEN, "\npressureSensors[%i].setPoints[%i].setPType = % i, pressureSensors[%i].currentP = % f, pressureSensors[%i].setPoints[%i].setP = % f", sensor, i, pressureSensors[sensor].setPoints[i].setPType, sensor, pressureSensors[sensor].currentP, sensor, i, pressureSensors[sensor].setPoints[i].setP);
 			Serial.println(msgbuff);
 		}
 
@@ -536,16 +549,36 @@ void initRelays()
 
 void initSensors()
 {
-	ads.begin();
+	for (int i = 0; i < numSensors; i++)
+	{
+		adcAttachPin(pressureSensors[i].pin);
+		adcStart(pressureSensors[i].pin);
+	}
+
+
+
 }
 
 void setup()
 {
+	int i = 0;
 	delay(5000);                                     // Initial delay to allow intervention
+	
 	Serial.begin(9600);
-	pinMode(LED_BUILTIN, OUTPUT);
 
-	chipID = ESP.getChipId();
+	/*
+	while (!Serial)          // wait for serial ready, needed on ESP32 to avoid crash
+	{
+		delay(5000);
+		if (i++ > 5) { ESP.restart(); }
+	}
+	*/
+
+
+
+	pinMode(LED_BUILTIN, OUTPUT);
+	
+	chipID = ESP.getEfuseMac();
 	msgn = sprintf(nodeName, "SNPM-ESP8266-% X", chipID); // set node name, SNPM (Sensor Node Pump Mon),
 	displayStartHeader();
 
