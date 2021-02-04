@@ -26,7 +26,7 @@
 
 #include <cscNetServices.h>
 #include <Pumpmon.h>
-//#include <Adafruit_ADS1015.h>
+#include <esp_bt.h>
 
 #define ALLPUMPS 255
 #define ALLRELAYS 255
@@ -34,7 +34,7 @@
 
 auto timer = timer_create_default();
 long unsigned int chipID = 0;
-//Adafruit_ADS1115 ads;
+
 
 void printTimestamp()
 {
@@ -235,7 +235,7 @@ void checkSetPoints(int sensor)
 	{
 		if (debug)
 		{
-			Serial.println("\ncheckSetPoints(): ");
+			Serial.println("\nin checkSetPoints(): ");
 			msgn = snprintf(msgbuff, MSGBUFFLEN, "\npressureSensors[%i].setPoints[%i].setPType = % i, pressureSensors[%i].currentP = % f, pressureSensors[%i].setPoints[%i].setP = % f", sensor, i, pressureSensors[sensor].setPoints[i].setPType, sensor, pressureSensors[sensor].currentP, sensor, i, pressureSensors[sensor].setPoints[i].setP);
 			Serial.println(msgbuff);
 		}
@@ -244,6 +244,7 @@ void checkSetPoints(int sensor)
 		{
 		case 0:  // cut-out
 		{
+			if (debug) { Serial.println("cut-out setpoint");}
 			if (pressureSensors[sensor].currentP >= pressureSensors[sensor].setPoints[i].setP)
 			{
 				if (pressureSensors[sensor].setPoints[i].hystComp)
@@ -258,6 +259,7 @@ void checkSetPoints(int sensor)
 
 		case 1:  // cut-in
 		{
+			if (debug) { Serial.println("cut-in setpoint"); }
 			if (pressureSensors[sensor].currentP < pressureSensors[sensor].setPoints[i].setP)
 			{
 				if (pressureSensors[sensor].setPoints[i].hystComp)
@@ -275,7 +277,7 @@ void checkSetPoints(int sensor)
 	}
 }
 
-void checkSensors()
+void checkSensors(int d)
 {
 	digitalWrite(LED_BUILTIN, LOW);
 
@@ -285,9 +287,10 @@ void checkSensors()
 
 		if (debug)
 		{
-			msgn = sprintf(msgbuff, "\npressureSensors[i].rawV = % f,  pressureSensors[i].currentP = % f", pressureSensors[i].rawV, pressureSensors[i].currentP);
-			Serial.print(msgbuff);
+			msgn = sprintf(msgbuff, "\nin checkSensors pressureSensors[i].rawV = % f,  pressureSensors[i].currentP = % f", pressureSensors[i].rawV, pressureSensors[i].currentP);
+			outputMsg(msgbuff);
 		}
+		delay(d);
 		checkSetPoints(i);
 	}
 
@@ -331,7 +334,7 @@ void sendSensorData()
 
 bool handleCheckSensorsTimer(void*)
 {
-	checkSensors();
+	checkSensors(0);
 	return true;
 }
 
@@ -559,6 +562,11 @@ void initSensors()
 
 }
 
+void turnOffBT()
+{
+	esp_bt_controller_disable();
+}
+
 void setup()
 {
 	int i = 0;
@@ -575,6 +583,7 @@ void setup()
 	*/
 
 
+	turnOffBT();
 
 	pinMode(LED_BUILTIN, OUTPUT);
 	
@@ -591,7 +600,7 @@ void setup()
 
 	initSensors();
 	initRelays();
-	checkSensors();                                    // get initial readings
+	checkSensors(0);                                    // get initial readings
 
 	if (network)
 	{
