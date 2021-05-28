@@ -497,7 +497,7 @@ void handleMQTTmsg(char* mqtt_topic, byte* payload, unsigned int length)
 				sensor = pumpmsg["sensor"];
 				if ((sensor < 0) || (sensor > numSensors))
 				{
-					Serial.println("\Invalid sensor number received");
+					Serial.println("\nInvalid sensor number received");
 				}
 				else
 				{
